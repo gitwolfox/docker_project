@@ -9,9 +9,14 @@ services:
       - ./app:/var/www/html
     working_dir: /etc/nginx
     links:
-      - python
-  python:
-    container_name: python
+      - pythond
+      - redis
+      - mysql
+  redis:
+    container_name: redisd
+    image: redis
+  pythond:
+    container_name: pythond
     build: ./docker/python
     volumes:
       - ./app:/var/www/html
